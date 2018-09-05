@@ -1,0 +1,45 @@
+locations:
+
+    A,B,C,D,E,F1,G1,H1,I1,J1,K1,L,M,N,O,P,Q: # buildings
+        techs:
+            demand_electricity:
+            demand_cooling:
+            pv:
+            AC:
+
+    EC1,EC2,EC3,EC4: # Energy Centres
+        techs:
+            CCHP_supply:
+            CCHP:
+            HP:
+            EC:
+            cold_store:
+
+    N1,N2,N3,N4,N6: # network nodes
+
+    A.coordinates: {lat: 12.9850618, lon: 77.7285653}
+    B.coordinates: {lat: 12.9855702, lon: 77.7276887}
+    C.coordinates: {lat: 12.9841191, lon: 77.7282475}
+    D.coordinates: {lat: 12.9846078, lon: 77.7273196}
+    E.coordinates: {lat: 12.9827486, lon: 77.7273477}
+    F1.coordinates: {lat: 12.9816668, lon: 77.7268745}
+    G1.coordinates: {lat: 12.980684, lon: 77.7267824}
+    H1.coordinates: {lat: 12.9810311, lon: 77.7261436}
+    I1.coordinates: {lat: 12.9806712, lon: 77.7256367}
+    J1.coordinates: {lat: 12.9807953, lon: 77.7249193}
+    K1.coordinates: {lat: 12.9806093, lon: 77.7240043}
+    L.coordinates: {lat: 12.9797781, lon: 77.7240471}
+    M.coordinates: {lat: 12.9793477, lon: 77.7253815}
+    N.coordinates: {lat: 12.9778405, lon: 77.7240526}
+    O.coordinates: {lat: 12.9817025, lon: 77.7229595}
+    P.coordinates: {lat: 12.979141, lon: 77.722626}
+    Q.coordinates: {lat: 12.9819301, lon: 77.724525}
+    EC1.coordinates: {lat: 12.9831582, lon: 77.7252567}
+    EC2.coordinates: {lat: 12.9853432, lon: 77.7292371}
+    EC3.coordinates: {lat: 12.9801263, lon: 77.7215981}
+    EC4.coordinates: {lat: 12.9800322, lon: 77.7261901}
+    N1.coordinates: {lat: 12.9803249, lon: 77.723347}
+    N2.coordinates: {lat: 12.9787777, lon: 77.7232933}
+    N3.coordinates: {lat: 12.98021, lon: 77.7248276}
+    N4.coordinates: {lat: 12.9788509, lon: 77.7247739}
+    N6.coordinates: {lat: 12.9822382, lon: 77.7255678}

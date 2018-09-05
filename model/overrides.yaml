@@ -1,0 +1,18 @@
+bso2018:
+    model.name: BSO2018 Bangalore cooling network
+    run:
+        solver_options.MIPGap: 0.02
+        solver_options.Threads: 1
+
+    links:
+        EC2,A.techs.thermal_pipes.costs.monetary.purchase: 1e7
+        EC1,N1.techs.thermal_pipes.costs.monetary.purchase: 1e7
+        EC4,G.techs.thermal_pipes.costs.monetary.purchase: 1e7
+        EC3,I.techs.thermal_pipes.costs.monetary.purchase: 1e7
+    techs:
+        pv.costs.monetary: {purchase: 8000, energy_cap: 92000} # http://www.eai.in/ref/ae/sol/rooftop/cost
+        AC.costs.monetary: {purchase: 8000, energy_cap: 10000} # http://www.eai.in/ref/ae/sol/rooftop/cost
+        pv.constraints.resource: file=BSO2018/solar_resource.csv:pv
+        demand_electricity.constraints.resource: file=BSO2018/demand_electricity.csv
+        demand_cooling.constraints.resource: file=BSO2018/demand_cooling.csv
+        demand_UPS.constraints.resource: file=BSO2018/demand_UPS.csv
