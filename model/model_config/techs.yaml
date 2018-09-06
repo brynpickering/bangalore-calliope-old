@@ -27,6 +27,7 @@ techs:
             parent: demand
             name: Electrical demand
             carrier_in: electricity
+        constraints.resource: file=demand_electricity.csv
 
     demand_cooling:
         essentials:
@@ -34,6 +35,7 @@ techs:
             parent: demand
             name: Cooling demand
             carrier_in: coolth
+        constraints.resource: file=demand_cooling.csv
 
     demand_UPS:
         essentials:
@@ -41,8 +43,6 @@ techs:
             parent: demand
             name: Uninterruptible power demand
             carrier_in: electricity
-        constraints:
-            resource: file=demand_UPS.csv
 
 # Building-scale ------
     pv:
@@ -52,6 +52,7 @@ techs:
             name: Solar PV
             carrier_out: electricity
         constraints:
+            resource: file=solar_resource.csv:pv
             energy_cap_max: .inf
             force_resource: true
             resource_area_per_energy_cap: 7
@@ -88,6 +89,30 @@ techs:
                 energy_cap: 14400  # Rs SPONS, converting GBP to INR for R410 A air cooled chiller
                 om_con: 200  # Rs/Kwh diesel consumption, based on $3/kWh assumtion at https://www.lazard.com/perspective/levelized-cost-of-energy-2017/
 
+    transformer:
+        essentials:
+            color: "#abd9e9"
+            name: step down transformer
+            parent: conversion
+            carrier_out: electricity
+            carrier_in: distrib_electricity
+        constraints:
+            energy_cap_max: .inf
+            energy_eff: 1 # no losses
+        costs:
+            monetary:
+                om_prod: 8  # Rs, 'Low tension commercial' https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
+
+    exchanger:
+        essentials:
+            color: "#abd9e9"
+            name: cold water exchanger
+            parent: conversion
+            carrier_out: cooling
+            carrier_in: distrib_cooling
+        constraints:
+            energy_cap_max: .inf
+            energy_eff: 1 # no losses
 
 # Energy centre ------
     CCHP_supply:
@@ -165,6 +190,7 @@ techs:
         constraints:
             charge_rate: 0.5
             storage_cap_max: 100000
+            energy_cap_max: .inf
         costs:
             monetary:
                 storage_cap: 3000  # SPONS, converting GBP to INR
@@ -196,6 +222,32 @@ techs:
         costs:
             monetary:
                 energy_cap_per_distance: 731  # Rs, http://ncrpb.nic.in/Technical_assistance_report_comp_B/Volume%20I%20Panipat%20Water%20Supply/WSA_ADB%20NCRPB_FR_Vol%20I-D%20(Panipat%20WS%20Detailed%20Esitmates).pdf
+
+    electricity_lines:
+        essentials:
+            color: "#abdda4ff"
+            parent: transmission
+            name: Electricity lines
+            carrier: distrib_electricity
+        constraints:
+            energy_cap_max: 20000
+            energy_eff: 1  # electrical losses assumed negligible
+        costs:
+            monetary:
+                energy_cap: 1e-4  # dummy cost
+
+    electricity_EC_lines:
+        essentials:
+            color: "#abdda4ff"
+            parent: transmission
+            name: Electricity lines
+            carrier: distrib_electricity
+        constraints:
+            energy_cap_max: 20000
+            energy_eff: 1  # electrical losses assumed negligible
+        costs:
+            monetary:
+                energy_cap: 1e-4  # dummy cost
 
 # System supply -----
     supply_elec:

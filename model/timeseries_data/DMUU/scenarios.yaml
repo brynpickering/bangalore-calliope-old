@@ -1,0 +1,160 @@
+'278':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_278.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_278.csv
+  model:
+    probability: 0.07600000000000001
+'277':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_277.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_277.csv
+  model:
+    probability: 0.04200000000000001
+'185':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_185.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_185.csv
+  model:
+    probability: 0.08
+'3':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_3.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_3.csv
+  model:
+    probability: 0.11599999999999999
+'217':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_217.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_217.csv
+  model:
+    probability: 0.08
+'421':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_421.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_421.csv
+  model:
+    probability: 0.07600000000000001
+'174':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_174.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_174.csv
+  model:
+    probability: 0.064
+'353':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_353.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_353.csv
+  model:
+    probability: 0.038000000000000006
+'72':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_72.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_72.csv
+  model:
+    probability: 0.04200000000000001
+'331':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_331.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_331.csv
+  model:
+    probability: 0.08199999999999999
+'132':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_132.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_132.csv
+  model:
+    probability: 0.08199999999999999
+'35':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_35.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_35.csv
+  model:
+    probability: 0.11599999999999999
+'364':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_364.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_364.csv
+  model:
+    probability: 0.020000000000000004
+'161':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_161.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_161.csv
+  model:
+    probability: 0.02800000000000001
+'237':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_237.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_237.csv
+  model:
+    probability: 0.04400000000000001
+'235':
+  techs:
+    demand_cooling:
+      constraints:
+        resource: file=scenarios/demand_cooling_235.csv
+    demand_electricity:
+      constraints:
+        resource: file=scenarios/demand_electricity_235.csv
+  model:
+    probability: 0.013999999999999999

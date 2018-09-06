@@ -2,9 +2,7 @@ import:
     - 'model_config/techs.yaml'
     - 'model_config/locations_simplified.yaml'
     - 'model_config/links_simplified.yaml'
-
-model:
-    timeseries_data_path: 'timeseries_data'
+model.timeseries_data_path: 'timeseries_data'
 run:
     solver: gurobi
     mode: plan

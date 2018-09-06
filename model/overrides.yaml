@@ -1,5 +1,6 @@
 bso2018:
     model.name: BSO2018 Bangalore cooling network
+    model.timeseries_data_path: 'timeseries_data/BSO2018'
     run:
         solver_options.MIPGap: 0.02
         solver_options.Threads: 1
@@ -12,7 +13,83 @@ bso2018:
     techs:
         pv.costs.monetary: {purchase: 8000, energy_cap: 92000} # http://www.eai.in/ref/ae/sol/rooftop/cost
         AC.costs.monetary: {purchase: 8000, energy_cap: 10000} # http://www.eai.in/ref/ae/sol/rooftop/cost
-        pv.constraints.resource: file=BSO2018/solar_resource.csv:pv
-        demand_electricity.constraints.resource: file=BSO2018/demand_electricity.csv
-        demand_cooling.constraints.resource: file=BSO2018/demand_cooling.csv
-        demand_UPS.constraints.resource: file=BSO2018/demand_UPS.csv
+        demand_UPS.constraints.resource: file=demand_UPS.csv
+
+dmuu:
+    model.name: DMUU Bangalore cooling network
+    model.timeseries_data_path: 'timeseries_data/DMUU'
+    run.solver_options.Threads: 4
+    techs: # update tech costs
+        pv.costs.monetary:
+            purchase: 3.4e4  # http://www.eai.in/ref/ae/sol/rooftop/cost - 30% subsidy
+            energy_cap: 3.6e4  # http://www.eai.in/ref/ae/sol/rooftop/cost - 30% subsidy
+            export: -3.40  # https://mnre.gov.in/file-manager/akshay-urja/may-june-2014/EN/18-22.pdf
+        AC.costs.monetary: {purchase: 2.3e6, energy_cap: 9510} # SPONS
+        thermal_EC_pipes.costs.monetary.purchase: 5e7 # triggering purchase constraints, based on 1250m2 plot @ 41500 Rs/m2 (https://www.guidancevalue.com/newpdf-2017(Urban)/Mahadevapura.pdf)
+        thermal_EC_pipes.constraints.units_max_systemwide: 1 # There can only be one energy centre connection
+        electricity_EC_lines.costs.monetary.purchase: 1 # triggering purchase constraints
+        electricity_EC_lines.constraints.units_max_systemwide: 1 # There can only be one energy
+        CCHP_biomass:
+            essentials.primary_carrier_out: electricity
+            costs.monetary:
+                purchase: 4e6 # 100m2 for fuel storage
+                export: -3.4  # assumed to be the same as PV
+        CCHP_diesel:
+            essentials.primary_carrier_out: electricity
+            costs.monetary:
+                purchase: 4e5 # 10m2 for fuel storage
+                export: -3.4  # assumed to be the same as PV
+        EC.costs.monetary.om_con: 8.25  # Rs 'high tension': https://www.karnataka.gov.in/kerc/Court%20Orders/Tariff%202017/ENGLISH-Press%20Note.pdf
+        supply_elec.costs.monetary.om_prod: 0
+        demand_electricity.constraints.resource: file=demand_electricity_mean.csv
+        demand_cooling.constraints.resource: file=demand_cooling_mean.csv
+
+    links: # add in electricity lines and energy centre specific lines
+        EC2,A.techs:
+            thermal_pipes.exists: false
+            thermal_EC_pipes.one_way: true
+            electricity_EC_lines.one_way: true
+        A,B.techs.electricity_lines:
+        A,C.techs.electricity_lines:
+        C,D.techs.electricity_lines:
+        C,E.techs.electricity_lines:
+        E,F.techs.electricity_lines:
+        N1,E.techs.electricity_lines:
+        N1,F.techs.electricity_lines:
+        F,G.techs.electricity_lines:
+        EC1,N1.techs:
+            thermal_pipes.exists: false
+            thermal_EC_pipes.one_way: true
+            electricity_EC_lines.one_way: true
+        N1,J.techs.electricity_lines:
+        J,H.techs.electricity_lines:
+        J,K.techs.electricity_lines:
+        EC4,G.techs:
+            thermal_pipes.exists: false
+            thermal_EC_pipes.one_way: true
+            electricity_EC_lines.one_way: true
+        G,H.techs.electricity_lines:
+        H,I.techs.electricity_lines:
+        K,H.techs.electricity_lines:
+        EC3,I.techs:
+            thermal_pipes.exists: false
+            thermal_EC_pipes.one_way: true
+            electricity_EC_lines.one_way: true
+
+    locations: # Shuffle around techs that do/don't exist
+        A,B,C,D,E,F,G,H,I,J,K:
+            techs:
+                demand_UPS.exists: false
+                supply_elec.exists: false
+                transformer:
+                exchanger:
+                diesel_gen:
+        EC1,EC2,EC3,EC4: # Energy Centres
+            techs.supply_elec.costs.monetary.om_prod: 0  # remove cost from this tech & assign to om_con of electricity-consuming techs
+
+    # Add clustering
+    model.time:
+            function: apply_clustering
+            function_options:
+                clustering_func: file=clusters.csv:cluster_num
+                how: mean
