@@ -3,11 +3,7 @@ Calliope model, specific to a (illustrative) district in Bangalore, India.
 
 For more information on the model structure and general use of Calliope, see [the documentation](https://calliope.readthedocs.io/en/stable/).
 
-<object data="bangalore_district.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="bangalore_district.pdf">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://github.com/brynpickering/bangalore-calliope/blob/master/bangalore_district.pdf">Download PDF</a>.</p>
-    </embed>
-</object>
+![Bangalore district map](bangalore_district.png)
 
 This model has been used for two papers to date. Each uses a different version of Calliope. Installation and run instructions are given below.
 
